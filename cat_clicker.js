@@ -1,7 +1,7 @@
 (function() {
 var catPics = document.getElementsByClassName("catPic");
-var cats = ["Rocky", "Apollo"];
-var counter = [0, 0];
+var cats = ["Rocky", "Apollo", "Lola", "Bear"];
+var counter = [0, 0, 0, 0];
 
 var catInit = function(i) {
     var children = catPics[i].children;
@@ -9,7 +9,6 @@ var catInit = function(i) {
     children[2].innerHTML = counter[i];
     catPics[i].addEventListener('click', function() {
         this.children[2].innerHTML = ++counter[i];
-        console.log(i);
     })
 }
 
