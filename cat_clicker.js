@@ -1,7 +1,9 @@
 (function() {
 var catPics = document.getElementsByClassName("catPic");
 var cats = ["Rocky", "Apollo", "Lola", "Bear"];
-var counter = [0, 0, 0, 0];
+var counterStringInit = "0, ".repeat(cats.length);
+var counterString = counterInit.slice(0,(counterInit.length-2));
+var counter = counterString.split(', ').map(Number);
 
 var catInit = function(i) {
     var children = catPics[i].children;
