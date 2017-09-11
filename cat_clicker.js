@@ -26,11 +26,13 @@ var catView = {
         var catTitle = document.getElementById("catTitle");
         var catPicture = document.getElementById("catPicture");
         var catCounter = document.getElementById("catCounter");
+        catPicture.addEventListener('click', function() {
+            controller.incrementCounter();
+        })
         this.render();
     },
     render: function() {
         var currentCat = controller.getSelectedCat();
-        console.log(currentCat);
         catTitle.innerHTML = currentCat.name;
         catPicture.src = currentCat.img;
         catCounter.innerHTML = currentCat.counter;
@@ -39,16 +41,25 @@ var catView = {
 
 var catListView = {
     init: function () {
-        this.catList = document.getElementById("catList");
-        var htmlStr = '';
-        model.cats.forEach(function (cat) {
-            console.log(cat.name + " " + cat.counter + " " + cat.img);
-            htmlStr += '<li><button class="cat-button">' +
-                cat.name +
-                '</button></li>';
-        })
-        this.catList.innerHTML = htmlStr;
+        var catList = document.getElementById("catList");
+        this.render();
     },
+    render: function () {
+        var li, button, cat;
+        var cats = controller.getAllCats();
+        cats.forEach(function (cat) {
+            li = document.createElement('li');
+            li.innerText = cat.name;
+
+            li.addEventListener('click', (function(catCopy) {
+                return function() {
+                    controller.setSelectedCat(catCopy);
+                    catView.render();
+                };
+            })(cat));
+            this.catList.appendChild(li);
+        })
+    }
 }
 
 var controller = {
@@ -59,8 +70,17 @@ var controller = {
     },
     getSelectedCat: function() {
         return model.selectedCat;
+    },
+    getAllCats: function() {
+        return model.cats;
+    },
+    setSelectedCat: function(cat) {
+        model.selectedCat = cat;
+    },
+    incrementCounter: function() {
+        model.selectedCat.counter++;
+        catView.render();
     }
-    
 }
 controller.init();
 } ());
