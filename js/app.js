@@ -62,11 +62,32 @@ var catListView = {
     }
 }
 
+var adminView = {
+    init: function() {
+        var adminSection = document.getElementById("adminSection");
+        var adminBtn = document.getElementById("adminBtn");
+        var name = document.getElementById("name");
+        var url = document.getElementById("url");
+        var numOfClicks = document.getElementById("numOfClicks");
+        this.render();
+        console.log(name);
+        
+    },
+    render: function() {
+        var currentCat = controller.getSelectedCat();
+        name.value = '';
+        name.value = currentCat.name;
+        alert(name.value);
+        console.log(name);
+    }
+}
+
 var controller = {
     init: function() {
         model.selectedCat = model.cats[0];
         catView.init();
         catListView.init();
+        adminView.init();
     },
     getSelectedCat: function() {
         return model.selectedCat;
