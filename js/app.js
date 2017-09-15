@@ -70,15 +70,13 @@ var adminView = {
         var url = document.getElementById("url");
         var numOfClicks = document.getElementById("numOfClicks");
         this.render();
-        console.log(name);
         
     },
     render: function() {
         var currentCat = controller.getSelectedCat();
-        name.value = '';
-        name.value = currentCat.name;
-        alert(name.value);
-        console.log(name);
+        console.log(currentCat+document.getElementById("name"));
+        // name.value = 'world';
+        // name.value = currentCat.name;
     }
 }
 
