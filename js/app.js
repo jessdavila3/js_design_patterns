@@ -66,7 +66,7 @@ var adminView = {
     init: function() {
         var adminSection = document.getElementById("adminSection");
         var adminBtn = document.getElementById("adminBtn");
-        var name = document.getElementById("name");
+        var name = document.getElementById("inputName");
         var url = document.getElementById("url");
         var numOfClicks = document.getElementById("numOfClicks");
         this.render();
@@ -74,9 +74,7 @@ var adminView = {
     },
     render: function() {
         var currentCat = controller.getSelectedCat();
-        console.log(currentCat+document.getElementById("name"));
-        // name.value = 'world';
-        // name.value = currentCat.name;
+        console.log(this.name);
     }
 }
 
